@@ -1,0 +1,41 @@
+{% extends '../layout.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+    {% block content %}
+    <h1>Buku</h1>
+    {% if (messages.success)  %}
+        <p>{{ messages.success }}</p>
+    {% endif  %}  
+    {% if (messages.error)  %}
+        <p>{{ messages.error }}</p>
+    {% endif  %}
+    <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="/buku">Buku</a></li>
+    </ul> 
+    <h5><a href="/buku/tambah">Tambah Buku</a></h5>
+    <table>
+        <tr>
+            <th>Penulis</th>
+            <th>Judu</th>
+            <th>Kota</th>
+            <th>Penerbit</th>
+            <th>Tahun</th>
+            <th>Action</th>
+        </tr>
+        {% for buku in data %}
+        <tr>    
+            <td>{{ buku.penulis }}</td>
+            <td>{{ buku.judul }}</td>
+            <td>{{ buku.kota }}</td>
+            <td>{{ buku.penerbit }}</td>
+            <td>{{ buku.tahun }}</td>
+            <td>
+                <a href="/buku/edit/{{ buku.id }}"><button>Edit</button></a>
+                <a href="/buku/delete/{{ buku.id }}"><button>Delete</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
